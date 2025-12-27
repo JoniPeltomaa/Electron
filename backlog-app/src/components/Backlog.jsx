@@ -19,6 +19,8 @@ export default function Backlog() {
   }
 
   const project = projects[activeProject];
+  
+  if (!project.testing) project.testing = [];
 
   const addTask = () => {
     if (!newTitle.trim()) return;
@@ -114,7 +116,7 @@ export default function Backlog() {
       {filteredTasks(state).map((task) => (
         <div
           key={task.id}
-          className={`p-3 mb-2 rounded cursor-grab ${priorityColor(task.priority)}`}
+          className="p-3 mb-2 rounded cursor-grab bg-gray-300 dark:bg-gray-600"
           draggable
           onDragStart={(e) =>
             e.dataTransfer.setData(
@@ -127,7 +129,7 @@ export default function Backlog() {
             <h3 className="font-bold">{task.title}</h3>
 
             <div className="flex items-center space-x-2">
-              <span className="text-xs px-2 py-1 rounded bg-white dark:bg-gray-900 text-gray-600 dark:text-gray-300 border">
+              <span className={`text-xs px-2 py-1 rounded text-gray-800 dark:text-gray-200 ${priorityColor(task.priority)}`}>
                 {task.priority}
               </span>
 
@@ -178,7 +180,7 @@ export default function Backlog() {
             className={`px-3 py-1 rounded border ${
               filter === p
                 ? "bg-blue-500 text-white"
-                : "bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300"
+                : "bg-white dark:bg-gray-600 text-gray-700 dark:text-white"
             }`}
           >
             {p.charAt(0).toUpperCase() + p.slice(1)}
@@ -192,21 +194,21 @@ export default function Backlog() {
           value={newTitle}
           onChange={(e) => setNewTitle(e.target.value)}
           placeholder="Tehtävän otsikko..."
-          className="border rounded px-3 py-2 dark:bg-gray-800"
+          className="border rounded px-3 py-2 dark:bg-gray-600 dark:placeholder-white placeholder-black"
         />
 
         <textarea
           value={newDescription}
           onChange={(e) => setNewDescription(e.target.value)}
           placeholder="Tehtävän kuvaus..."
-          className="border rounded px-3 py-2 dark:bg-gray-800"
+          className="border rounded px-3 py-2 dark:bg-gray-600 dark:placeholder-white placeholder-black"
         />
 
         <div className="flex space-x-2">
           <select
             value={priority}
             onChange={(e) => setPriority(e.target.value)}
-            className="border rounded px-2 py-2 dark:bg-gray-800"
+            className="border rounded px-2 py-2 dark:bg-gray-600"
           >
             <option value="low">Low</option>
             <option value="medium">Medium</option>
@@ -222,13 +224,15 @@ export default function Backlog() {
         </div>
       </div>
 
-      {/* Kolumnit */}
-      <div className="grid grid-cols-3 gap-4">
-        {renderColumn("todo", "To Do")}
-        {renderColumn("inprogress", "In Progress")}
-        {renderColumn("done", "Done")}
+      {/* Neljä saraketta */}
+      <div className="grid grid-cols-4 gap-4">
+        {renderColumn("todo", "Tehtävälista")}
+        {renderColumn("inprogress", "Tekemässä")}
+        {renderColumn("testing", "Testauksessa")}
+        {renderColumn("done", "Valmis")}
       </div>
     </div>
   );
 }
+
 

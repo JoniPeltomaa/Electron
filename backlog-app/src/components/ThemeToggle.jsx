@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { FaMoon, FaSun } from "react-icons/fa";
 
 export default function ThemeToggle() {
   const [dark, setDark] = useState(
@@ -18,10 +19,13 @@ export default function ThemeToggle() {
   return (
     <button
       onClick={() => setDark(!dark)}
-      className="px-3 py-1 bg-gray-800 text-white rounded"
+      className="p-2 rounded-full bg-gray-800 text-white hover:bg-gray-700 transition"
+      title={dark ? "Vaihda vaaleaan tilaan" : "Vaihda tummaan tilaan"}
     >
-      {dark ? "Light" : "Dark"}
+      {dark ? <FaSun size={18} /> : <FaMoon size={18} />}
     </button>
   );
 }
+
+
 
