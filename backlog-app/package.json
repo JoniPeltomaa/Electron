@@ -2,10 +2,11 @@
   "name": "backlog-app",
   "version": "0.1.0",
   "private": true,
+  "main": "main.js",
+  "homepage": ".",
   "dependencies": {
     "chart.js": "^4.5.1",
     "cra-template-tailwindcss": "4.0.1",
-    "electron": "^39.2.7",
     "react": "^18.3.1",
     "react-chartjs-2": "^5.3.1",
     "react-dom": "^18.3.1",
@@ -17,14 +18,10 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
+    "electron": "electron .",
+    "electron-build": "electron-builder",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
-  },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
   },
   "browserslist": {
     "production": [
@@ -38,7 +35,28 @@
       "last 1 safari version"
     ]
   },
+  "build": {
+    "appId": "com.joni.backlogapp",
+    "productName": "BacklogApp",
+    "directories": {
+      "buildResources": "assets"
+    },
+    "files": [
+      "build/**/*",
+      "main.js",
+      "preload.js",
+      "package.json"
+    ],
+    "extraMetadata": {
+      "main": "main.js"
+    },
+    "win": {
+      "target": "portable"
+    }
+  },
   "devDependencies": {
-    "electron-packager": "^17.1.2"
+    "electron": "^30.5.1",
+    "electron-builder": "^26.4.0"
   }
 }
+

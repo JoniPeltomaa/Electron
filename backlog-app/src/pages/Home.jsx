@@ -20,10 +20,10 @@ export default function Home() {
   };
 
   return (
-    <div className="p-6 dark:bg-gray-900 dark:text-white min-h-screen">
+    <div className="p-6 dark:bg-gray-900 dark:text-white min-h-screen text-center">
       <h1 className="text-3xl font-bold mb-4">Projektit</h1>
 
-      <div className="flex space-x-2 mb-6">
+      <div className="flex space-x-2 mb-6 justify-center">
         <input
           value={name}
           onChange={(e) => setName(e.target.value)}
@@ -41,33 +41,34 @@ export default function Home() {
       <h2 className="text-xl font-bold mb-2">Valitse projekti</h2>
 
       <div className="space-y-2">
-        {Object.keys(projects).map((p) => (
-            <div
-            key={p}
-            className="flex justify-between items-center 
-                        px-4 py-2 bg-white dark:bg-gray-800 
-                        rounded shadow"
-            >
-            <button
-                onClick={() => openProject(p)}
-                className="text-left flex-1 hover:underline"
-            >
-                {p}
-            </button>
+  {Object.keys(projects).map((p) => (
+    <div
+      key={p}
+      className="block max-w-sm mx-auto px-4 py-2 bg-white dark:bg-gray-800 rounded shadow"
+    >
+        <button
+          onClick={() => openProject(p)}
+          className="px-3 py-1 hover:underline"
+        >
+          {p}
+        </button>
+      
 
-            <button
-                onClick={() => {
-                if (window.confirm(`Poistetaanko projekti "${p}"?`)) {
-                    deleteProject(p);
-                }
-                }}
-                className="ml-4 px-3 py-1 bg-red-600 text-white rounded hover:bg-red-700"
-            >
-                Poista
-            </button>
-            </div>
-        ))}
-      </div>
+      <button
+        onClick={() => {
+          if (window.confirm(`Poistetaanko projekti "${p}"?`)) {
+            deleteProject(p);
+          }
+        }}
+        className="ml-4 px-3 py-1 bg-red-600 text-white rounded hover:bg-red-700"
+      >
+        Poista
+      </button>
+    </div>
+  ))}
+</div>
+
+
     </div>
   );
 }

@@ -3,7 +3,7 @@ import ThemeToggle from "./ThemeToggle";
 
 export default function Navbar() {
   return (
-    <nav className="flex items-center bg-blue-600 text-white px-6 py-3 rounded-full h-10">
+    <nav className="flex items-center bg-blue-600 text-white px-6 py-3 rounded-full h-10 sticky top-0 z-50 shadow">
 
       {/* Vasen tyhjä tila */}
       <div className="flex-1"></div>
